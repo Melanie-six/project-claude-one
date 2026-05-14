@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/twse-api/:path*",
+      "destination": "https://openapi.twse.com.tw/v1/:path*"
+    }
+  ]
+}
