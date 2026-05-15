@@ -9,15 +9,31 @@ export default function App() {
   const [allStocks, setAllStocks] = useState([])
   const [loadState, setLoadState] = useState('loading') // 'loading' | 'ready' | 'error'
   const [errorMsg, setErrorMsg] = useState('')
+  const [fetchedAt, setFetchedAt] = useState(null)
   const [query, setQuery] = useState('')
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selected, setSelected] = useState(null)
   const wrapperRef = useRef(null)
 
+  function loadStocks() {
+    setLoadState('loading')
+    fetchAllStocks()
+      .then(data => {
+        setAllStocks(data)
+        setFetchedAt(new Date())
+        setLoadState('ready')
+      })
+      .catch(err => {
+        setErrorMsg(err.message)
+        setLoadState('error')
+      })
+  }
+
   useEffect(() => {
     fetchAllStocks()
       .then(data => {
         setAllStocks(data)
+        setFetchedAt(new Date())
         setLoadState('ready')
       })
       .catch(err => {
@@ -62,6 +78,20 @@ export default function App() {
       <header className="app-header">
         <h1 className="app-title">台股查詢</h1>
         <p className="app-subtitle">輸入股票代碼或公司名稱，查詢最近交易日收盤資料</p>
+        <div className="data-status">
+          <span className="fetched-at">
+            {fetchedAt
+              ? `資料抓取時間：${fetchedAt.toLocaleString('zh-TW', { hour12: false })}`
+              : loadState === 'loading' ? '資料載入中...' : ''}
+          </span>
+          <button
+            className="refresh-btn"
+            onClick={loadStocks}
+            disabled={loadState === 'loading'}
+          >
+            {loadState === 'loading' ? '更新中...' : '重新整理資料'}
+          </button>
+        </div>
       </header>
 
       <main className="app-main">
