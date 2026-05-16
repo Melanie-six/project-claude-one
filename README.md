@@ -1,16 +1,36 @@
-# React + Vite
+# 台股查詢工具
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+輸入股票代碼或公司名稱，查詢台灣證券交易所上市股票的最近交易日收盤資料。
 
-Currently, two official plugins are available:
+## 功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 輸入代碼（如 `2330`）或中文名稱（如 `台積電`）即時過濾
+- 列出最多 10 筆候選結果，點選後展開詳細資料
+- 顯示收盤價、漲跌幅（%）、開盤、最高、最低、成交量、成交金額、成交筆數
+- 顯示資料抓取時間，支援手動重新整理
 
-## React Compiler
+## 技術棧
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **前端**：React 19 + Vite
+- **資料來源**：台灣證券交易所 Open API（`STOCK_DAY_ALL`，無需 API key）
+- **CORS**：本機透過 Vite proxy，部署透過 Vercel rewrites
+- **部署**：Vercel
 
-## Expanding the ESLint configuration
+## 本機開發
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+開啟 http://localhost:5173
+
+## 部署
+
+專案已設定 `vercel.json`，連結 GitHub repo 後 push 即自動部署，無需額外設定。
+
+## 注意事項
+
+- 資料來源為台股上市股票（TWSE），不含上櫃（TPEX）
+- 台股交易時間 9:00–13:30，收盤後約 30–60 分鐘 API 更新當日收盤資料
+- 非交易日顯示最近一個交易日的資料
