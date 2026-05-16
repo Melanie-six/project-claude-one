@@ -45,12 +45,12 @@ vite.config.js               # Vite 設定（含本機 proxy）
 - 不新增超出需求的抽象或 feature flag；優先修改現有檔案而非新建
 
 ## 詳細文件
-- ./docs/README.md — 項目介紹與快速開始
-- ./docs/ARCHITECTURE.md — 架構、目錄結構、資料流
-- ./docs/DEVELOPMENT.md — 開發規範、命名規則
-- ./docs/FEATURES.md — 功能列表與完成狀態
-- ./docs/TESTING.md — 測試規範與指南
-- ./docs/CHANGELOG.md — 更新日誌
+- @docs/README.md — 項目介紹、快速開始、技術棧、常用指令
+- @docs/ARCHITECTURE.md — 目錄結構、啟動流程、API 欄位規格、CORS 機制、CSS 設計系統
+- @docs/DEVELOPMENT.md — 命名規則、關鍵開發限制、新增功能步驟、計畫歸檔流程
+- @docs/FEATURES.md — 每個功能的行為描述、狀態機、邊界條件
+- @docs/TESTING.md — 測試框架設定方式、優先測試項目、範例程式碼
+- @docs/CHANGELOG.md — 版本更新日誌
 
 ## 回覆方式
 儘量使用簡單易懂的中文問我問題或說明
