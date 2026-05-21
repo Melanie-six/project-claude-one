@@ -52,6 +52,9 @@ export default function StockCard({ stock, onClose }) {
         <div className="card-title">
           <span className="stock-code">{stock.Code}</span>
           <span className="stock-name">{stock.Name}</span>
+          <span className={`market-badge market-${stock.market?.toLowerCase()}`}>
+            {stock.market === 'TWSE' ? '上市' : '上櫃'}
+          </span>
         </div>
         <button className="card-close" onClick={onClose} aria-label="關閉">✕</button>
       </div>
@@ -88,7 +91,9 @@ export default function StockCard({ stock, onClose }) {
         </div>
       </div>
 
-      <p className="card-note">資料來源：台灣證券交易所｜最近交易日收盤資料</p>
+      <p className="card-note">
+        資料來源：{stock.market === 'TPEX' ? '櫃買中心（OTC）' : '台灣證券交易所'}｜最近交易日收盤資料
+      </p>
     </div>
   )
 }

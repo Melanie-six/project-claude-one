@@ -10,6 +10,9 @@ export default function SearchResults({ results, onSelect }) {
         >
           <span className="result-code">{stock.Code}</span>
           <span className="result-name">{stock.Name}</span>
+          <span className={`market-badge market-${stock.market?.toLowerCase()}`}>
+            {stock.market === 'TWSE' ? '上市' : '上櫃'}
+          </span>
           <span className="result-price">{stock.ClosingPrice}</span>
         </li>
       ))}

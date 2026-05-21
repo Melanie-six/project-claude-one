@@ -5,5 +5,5 @@ export async function fetchAllStocks() {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
   if (!Array.isArray(data) || data.length === 0) throw new Error('目前無交易資料，可能為非交易日')
-  return data
+  return data.map(s => ({ ...s, market: 'TWSE' }))
 }

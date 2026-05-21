@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/twse-api/, ''),
       },
+      '/tpex-api': {
+        target: 'https://www.tpex.org.tw/openapi/v1',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/tpex-api/, ''),
+      },
     },
   },
 })

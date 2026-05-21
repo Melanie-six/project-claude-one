@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/tpex-api/:path*",
+      "destination": "https://www.tpex.org.tw/openapi/v1/:path*"
+    },
+    {
       "source": "/twse-api/:path*",
       "destination": "https://openapi.twse.com.tw/v1/:path*"
     }
